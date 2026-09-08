@@ -1,0 +1,26 @@
+body{
+    background-image: url("assets/pg1_bg.png");
+    background-size:Cover;
+    background-color: black;
+    margin-bottom: 0;
+}
+
+#start{
+    position: fixed;
+    bottom: 60px;
+    right:60px;
+    padding: 10px 20px;
+    background-color: rgb(221, 3, 32);
+    color: rgb(241, 252, 21);
+    border-radius: 5px;
+    font-size: 16;
+    font-weight: bold;
+    z-index: 10;
+}
+
+#head{
+    top: 20px;
+    text-align: center;
+    color: aliceblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
