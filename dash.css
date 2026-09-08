@@ -1,0 +1,109 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    background-image: url("assets/pg1_bg.png");
+    background-size:Cover;
+    background-color: black;
+    margin-bottom: 0;
+    backdrop-filter: blur(5px);
+}
+
+#mainGrid{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#playerGrid{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.playerInfo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.playerInfo img{
+    height: 150px;
+    width: 150px;
+    border: 2px;
+    border-radius: 10px;
+    object-fit: cover;
+    margin-top: 5px;
+}
+
+#head{
+    top: 20px;
+    text-align: center;
+    color: aliceblue;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 60px;
+
+}
+
+.txt{
+    color: aliceblue;
+    margin-top: 10px;
+}
+
+#modeSelection{
+    display: flex;
+    flex-direction:row;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+}
+
+.mode{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.mode img{
+    height: 150px;
+    width: 150px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    transition: transform 0.6s ease, box-shadow 0.3s ease;
+    
+}
+
+.mode img:hover{
+    transform: translateY(-15px);
+    box-shadow: 0px 0px 3px 3px rgb(195, 255, 0);
+
+}
+
+.playerInfo input{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+}
+
+#submit button{
+    padding: 10px 20px;
+    background-color: rgb(221, 3, 32);
+    color: rgb(241, 252, 21);
+    border-radius: 5px;
+    font-size: 16;
+    font-weight: bold;
+    z-index: 10;
+}
+
+#vs{
+    width: 10;
+    height: 10; 
+    margin: 0%;
+}
