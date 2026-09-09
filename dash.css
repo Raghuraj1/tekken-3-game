@@ -77,6 +77,8 @@ body{
     margin-bottom: 10px;
     border-radius: 10px;
     transition: transform 0.6s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    cursor: pointer;
     
 }
 
@@ -106,4 +108,8 @@ body{
     width: 10;
     height: 10; 
     margin: 0%;
+}
+
+.mode img.active-glow{
+    box-shadow: 0 0 25px #ff4757;
 }

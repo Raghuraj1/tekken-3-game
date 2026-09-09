@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dash.css">
+    <script src="dash.js" defer></script>
     <title>Game Dashboard</title>
 </head>
 <body>
@@ -46,11 +47,14 @@
                 <img src="assets/quick.webp" alt="quick">
                 <h3 class="txt">QUICK</h3>
             </div>
+            <audio src="assets/button.mp3" id="buttonClick"></audio>
         </div>
         <br>
         <div id="submit">
             <button>BATTLE...</button>
         </div>
+        <audio src="assets/dash.mp3" id="dashBGM" preload="auto" loop></audio>
     </div>
+
 </body>
 </html>
