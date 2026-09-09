@@ -1,6 +1,6 @@
 const modeDivs = document.querySelectorAll('.mode');
 const clickSound = document.getElementById('buttonClick');
-const submit = document.querySelector('#submit button'); // fixed selector
+const submit = document.querySelector('#submit');
 
 let selectedModeData = {
     name: "Normal",

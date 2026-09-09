@@ -94,7 +94,7 @@ body{
     border-radius: 5px;
 }
 
-#submit button{
+#submit{
     padding: 10px 20px;
     background-color: rgb(221, 3, 32);
     color: rgb(241, 252, 21);
