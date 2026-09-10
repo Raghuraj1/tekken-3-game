@@ -7,8 +7,8 @@ localStorage.setItem('round',1);
 
 let selectedModeData = {
     name: "Normal",
-    hp: "1000",
-    power: "50",
+    hp: "1200",
+    power: "100",
     bgm: "assets/normal.mp3",
     bg: "assets/normal.png"
 };

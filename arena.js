@@ -1,9 +1,9 @@
 window.addEventListener('DOMContentLoaded', ()=>{
-    
+    const audio = document.getElementById('punch');
     const arenaBgSrc = localStorage.getItem('gameBg') || 'assets/normal.png';
     const p1Name = localStorage.getItem('player1');
-    const p2Name = localStorage.getItem('player2') || 1000;
-    const gameHP = localStorage.getItem('gameHP') || 1000;
+    const p2Name = localStorage.getItem('player2') || 1200;
+    const gameHP = localStorage.getItem('gameHP') || 1200;
     let player1hp = gameHP;
     let player2hp = gameHP;
     const maxHP = gameHP;
@@ -11,13 +11,25 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const ctx = canvas.getContext('2d');
     const keys = {};
     const bgImg = new Image();
-    const power = parseInt(localStorage.getItem('gamePower')) || 50;
+    const power = parseInt(localStorage.getItem('gamePower')) || 100;
     const attackRange = 220;
     let roundOver = false;
     let currentRound = localStorage.getItem('round');
     let p1WIN = localStorage.getItem('p1WIN');
     let p2WIN = localStorage.getItem('p2WIN');
     localStorage.setItem('round', currentRound);
+
+    const arenaBgmSrc = localStorage.getItem('gameBgm') || 'assets/normal.png';
+    const arenaAudio = document.getElementById('arenaBGM');
+
+    if (arenaAudio && arenaBgmSrc) {
+        arenaAudio.src = arenaBgmSrc;
+        arenaAudio.volume = 0.3;
+        arenaAudio.loop = true;
+        arenaAudio.play().catch(error => {
+            console.log("Autoplay restricted by browser:", error);
+        });    
+    }
 
     
     
@@ -71,7 +83,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     if (p1IsAttacking && distance < attackRange && !player1.hasHit) {
         player2hp = Math.max(0, player2hp - power);
-
+        audio.volume = 0.5;
+        audio.play().catch(error => console.log("Browser restricted autoplay:", error));
         player1.hasHit = true; 
     }
     if (!p1IsAttacking) {
@@ -80,6 +93,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     if (p2IsAttacking && distance < attackRange && !player2.hasHit) {
         player1hp = Math.max(0, player1hp - power);
+        audio.volume = 0.5;
+        audio.play().catch(error => console.log("Browser restricted autoplay:", error));
         player2.hasHit = true;
     }
     if (!p2IsAttacking) {
@@ -118,7 +133,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             window.location.href = 'dashboard.html';
             return;
         }else{
-            alert(`Round ${currentRound} Completed!!\nPlay round ${currentRound+1}`);
+            alert(`Round ${currentRound} Completed!!\nPlay round ${parseInt(currentRound)+1}`);
             currentRound++;
             localStorage.setItem('round',currentRound);
             localStorage.setItem('p1Hp',maxHP);
