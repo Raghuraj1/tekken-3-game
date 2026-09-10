@@ -1,6 +1,9 @@
 const modeDivs = document.querySelectorAll('.mode');
 const clickSound = document.getElementById('buttonClick');
 const submit = document.querySelector('#submit');
+localStorage.setItem('p2WIN',0);
+localStorage.setItem('p1WIN',0);
+localStorage.setItem('round',1);
 
 let selectedModeData = {
     name: "Normal",

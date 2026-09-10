@@ -13,6 +13,12 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const bgImg = new Image();
     const power = parseInt(localStorage.getItem('gamePower')) || 50;
     const attackRange = 220;
+    let roundOver = false;
+    let currentRound = localStorage.getItem('round');
+    let p1WIN = localStorage.getItem('p1WIN');
+    let p2WIN = localStorage.getItem('p2WIN');
+    localStorage.setItem('round', currentRound);
+
     
     
     function resizeCanvas() {
@@ -81,8 +87,49 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
     localStorage.setItem('p1Hp', player1hp);
     localStorage.setItem('p2Hp',player2hp);
-    drawHUD(ctx, canvas, player1, player2,player1hp,player2hp,maxHP);
+    drawHUD(ctx, canvas, player1, player2,player1hp,player2hp,maxHP,currentRound);
 
+    if ((player1hp == 0 || player2hp == 0)&& !roundOver){
+        roundOver = true;
+        let roundWinner = '';
+        if (player1hp == 0){
+            roundWinner = 'p2WIN';
+        }else if(player2hp == 0){
+            roundWinner = 'p1WIN';
+        }
+        let prevWin = parseInt(localStorage.getItem(roundWinner));
+        prevWin += 1;
+        localStorage.setItem(roundWinner, prevWin);
+        let player1Win = parseInt(localStorage.getItem('p1WIN'));
+        let player2Win = parseInt(localStorage.getItem('p2WIN'));
+        let ultimateWIN = '';
+        if (player1Win==2 || player2Win == 2 || currentRound == 3){
+            if (player1Win>player2Win){
+                ultimateWIN = player1.name;
+            }else if(player2Win>player1Win){
+                ultimateWIN = player2.name;
+            }else{
+                ultimateWIN = 'DRAW';
+            }
+            localStorage.setItem('p2WIN',0);
+            localStorage.setItem('p1WIN',0);
+            localStorage.setItem('round',1);
+            alert(`Match Over!\nWinner : ${ultimateWIN}`);
+            window.location.href = 'dashboard.html';
+            return;
+        }else{
+            alert(`Round ${currentRound} Completed!!\nPlay round ${currentRound+1}`);
+            currentRound++;
+            localStorage.setItem('round',currentRound);
+            localStorage.setItem('p1Hp',maxHP);
+            localStorage.setItem('p2Hp',maxHP);
+            window.location.href = 'arena.html';
+            return;
+        }
+        
+
+
+    }
     requestAnimationFrame(gameLoop);
     }
     gameLoop();
@@ -90,7 +137,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
 
 
-function drawHUD(ctx, canvas, p1, p2,player1hp,player2hp,maxHP) {
+function drawHUD(ctx, canvas, p1, p2,player1hp,player2hp,maxHP,currentRound) {
     const currentMode = (localStorage.getItem('gameMode') || 'NORMAL').toUpperCase();
 
     ctx.textAlign = "left";
@@ -119,7 +166,7 @@ function drawHUD(ctx, canvas, p1, p2,player1hp,player2hp,maxHP) {
 
     ctx.fillStyle = "#ff4757";
     ctx.font = "bold 15px Arial";
-    ctx.fillText("ROUND 1", canvas.width / 2, 92);
+    ctx.fillText(`ROUND ${currentRound}`, canvas.width / 2, 92);
 
 
     ctx.textAlign = "right";
