@@ -1,4 +1,5 @@
 window.addEventListener('DOMContentLoaded', ()=>{
+
     const audio = document.getElementById('punch');
     const arenaBgSrc = localStorage.getItem('gameBg') || 'assets/normal.png';
     const p1Name = localStorage.getItem('player1');
@@ -21,6 +22,8 @@ window.addEventListener('DOMContentLoaded', ()=>{
 
     const arenaBgmSrc = localStorage.getItem('gameBgm') || 'assets/normal.png';
     const arenaAudio = document.getElementById('arenaBGM');
+    alert(`Controls for ${p1Name}\nUP: W, LEFT: A, RIGHT: D, PUNCH: G, KICK: H\nControls for ${p2Name}\nUP: UP ARROW, LEFT: LEFT ARROW, RIGHT: RIGHT ARROW, PUNCH: O, KICK: P`);
+
 
     if (arenaAudio && arenaBgmSrc) {
         arenaAudio.src = arenaBgmSrc;
@@ -30,8 +33,6 @@ window.addEventListener('DOMContentLoaded', ()=>{
             console.log("Autoplay restricted by browser:", error);
         });    
     }
-
-    
     
     function resizeCanvas() {
         canvas.width = window.innerWidth;
