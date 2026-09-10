@@ -2,7 +2,7 @@ class Player {
     constructor(x, y, name, controls, spriteFolder) {
         this.x = x;
         this.y = y;
-        this.width = 200;
+        this.width = 230;
         this.height = 400;
         this.name = name;
         this.vx = 0;
@@ -41,30 +41,36 @@ class Player {
             this.actionTimer--;
             return;
         }
-
+        
+        this.width = 230;
+        this.height = 400;
         this.vx = 0;
         this.currentImg = this.sprites.idle; 
+        let oldHeight = this.height;
 
         if (keys[this.controls.punch]) {
             this.currentImg = this.sprites.punch;
             this.actionTimer = 15; 
+            this.width = 300;
             return;
         }
 
         if (keys[this.controls.kick]) {
             this.currentImg = this.sprites.kick;
-            this.actionTimer = 15; 
+            this.actionTimer = 15;
+            this.width = 300; 
             return;
         }
 
-        // Crawl / Duck
-        if (keys[this.controls.crawl] && this.isGrounded) {
-            this.currentImg = this.sprites.crawl;
-            this.height = 200; 
-            return;
-        } else {
-            this.height = 400; 
-        }
+        
+        // if (keys[this.controls.crawl] && this.isGrounded) {
+        //     this.currentImg = this.sprites.crawl;
+        //     this.height = 200;  
+        //     this.y += 500;            
+        //     return;
+        // } else {
+        //     this.height = 400; 
+        // }
 
         if (keys[this.controls.left]) {
             this.vx = -this.speed;
@@ -82,6 +88,7 @@ class Player {
 
         if (!this.isGrounded) {
             this.currentImg = this.sprites.jump;
+            
         }
     }
 
