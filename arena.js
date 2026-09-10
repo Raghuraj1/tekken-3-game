@@ -104,6 +104,11 @@ window.addEventListener('DOMContentLoaded', ()=>{
     localStorage.setItem('p1Hp', player1hp);
     localStorage.setItem('p2Hp',player2hp);
     drawHUD(ctx, canvas, player1, player2,player1hp,player2hp,maxHP,currentRound);
+    if (player1.x < 0) player1.x = 0;
+            if (player1.x > canvas.width - player1.width) player1.x = canvas.width - player1.width;
+
+            if (player2.x < 0) player2.x = 0;
+            if (player2.x > canvas.width - player2.width) player2.x = canvas.width - player2.width;
 
     if ((player1hp == 0 || player2hp == 0)&& !roundOver){
         roundOver = true;
@@ -142,6 +147,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
             window.location.href = 'arena.html';
             return;
         }
+    
         
 
 
