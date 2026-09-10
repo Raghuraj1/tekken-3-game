@@ -112,6 +112,7 @@ class Player {
         ctx.fill();
 
         ctx.drawImage(this.currentImg, this.x, this.y, this.width, this.height);
+        ctx.textAlign = "center";
         ctx.fillStyle = "#ff0000";
         ctx.font = "bold 14px Arial";
         ctx.fillText(this.name, this.x, this.y - 10);

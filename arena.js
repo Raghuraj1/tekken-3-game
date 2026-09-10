@@ -6,7 +6,7 @@ window.addEventListener('DOMContentLoaded', ()=>{
     const gameHP = localStorage.getItem('gameHP') || 1000;
     let player1hp = gameHP;
     let player2hp = gameHP;
-    
+    const maxHP = gameHP;
     const canvas = document.getElementById('arenaCanvas');
     const ctx = canvas.getContext('2d');
     const keys = {};
@@ -81,9 +81,58 @@ window.addEventListener('DOMContentLoaded', ()=>{
     }
     localStorage.setItem('p1Hp', player1hp);
     localStorage.setItem('p2Hp',player2hp);
+    drawHUD(ctx, canvas, player1, player2,player1hp,player2hp,maxHP);
 
     requestAnimationFrame(gameLoop);
     }
     gameLoop();
 });
 
+
+
+function drawHUD(ctx, canvas, p1, p2,player1hp,player2hp,maxHP) {
+    const currentMode = (localStorage.getItem('gameMode') || 'NORMAL').toUpperCase();
+
+    ctx.textAlign = "left";
+    ctx.fillStyle = "#23ce10";
+    ctx.font = "bold 18px Arial";
+    ctx.fillText(p1.name, (canvas.width/2)-185, 45);
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+    ctx.fillRect((canvas.width/2)-420, 55, 320, 22);
+    const p1HealthWidth = Math.max(0, (player1hp / maxHP) * 320);
+    ctx.fillStyle = "#d52e2e";
+    ctx.fillRect((canvas.width/2)-420, 55, p1HealthWidth, 22);
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.strokeRect((canvas.width/2)-420, 55, 320, 22);
+
+    ctx.textAlign = "center";
+    
+    ctx.fillStyle = "#ffcc00";
+    ctx.font = "bold 15px Arial";
+    ctx.fillText(currentMode, canvas.width / 2, 35);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "italic bold 32px Arial";
+    ctx.fillText("V / S", canvas.width / 2, 68);
+
+    ctx.fillStyle = "#ff4757";
+    ctx.font = "bold 15px Arial";
+    ctx.fillText("ROUND 1", canvas.width / 2, 92);
+
+
+    ctx.textAlign = "right";
+    ctx.fillStyle = "#ff4757";
+    ctx.font = "bold 18px Arial";
+    ctx.fillText(p2.name, (canvas.width/2)+185, 45);
+
+    ctx.fillStyle = "rgba(0, 0, 0, 0.6)";
+    ctx.fillRect((canvas.width/2)+100, 55, 320, 22);
+    const p2HealthWidth = Math.max(0, (player2hp / maxHP) * 320);
+    ctx.fillStyle = "#d52e2e";
+    ctx.fillRect(((canvas.width/2)+420) - p2HealthWidth, 55, p2HealthWidth, 22);
+    ctx.strokeStyle = "#ffffff";
+    ctx.lineWidth = 2;
+    ctx.strokeRect((canvas.width/2)+100, 55, 320, 22);
+}
